@@ -25,7 +25,7 @@ var layers = {
   SINGLE_FAMILY: new L.LayerGroup()
 };//OK
 
-// Create an overlays object to add to the layer control.
+// Create an overlays object to add to the layer control (top-right of map).
 var overlays = {
   "All Residential": layers.ALL_RESIDENTIAL,
   "Townhouse": layers.TOWNHOUSE,
@@ -71,14 +71,33 @@ var icons = {
   })
 };
 
-// // Initialize housingType, which will be used as a key to access the appropriate layers and icons for the layer group.
+// // // Initialize housingType, which will be used as a key to access the appropriate layers and icons for the layer group.
 // var housingType;
 
-// // Loop through the data and 
-// for (var i = 0; i < hou)
+// // // Loop through the data 
+// for (var i = 0; i < data.length; i++){
+//   if (data.Property_type == "All Residential"){
+//     housingType = "ALL_RESIDENTIAL";
+//   }
+//   else if (data.Property_type == "Condo/Co-op"){
+//     housingType = "CONDO_COOP";
+//   }
+//   else if (data.Property_type == "Multi-Family (2-4 Unit"){
+//     housingType = "MULTI_FAMILY";
+//   }
+//   else if (data.Property_type == "Single Family Residential"){
+//     housingType = "SINGLE_FAMILY";
+//   }
+//   else (data.Property_type == "Townhouse"){
+//     housingType = "TOWNHOUSE";
+//   }
+// }
 
 // Define path for source data
 var CaliHousing = "ca_county_data2.json"
+
+// Initialize housingType, which will be used as a key to access the appropriate layers and icons for the layer group.
+var housingType;
 
 // Call in and loop through the data to create markers for each counties.
 d3.json(CaliHousing).then(function (data) {
@@ -89,17 +108,36 @@ d3.json(CaliHousing).then(function (data) {
       let countyName = data[i].County;
       let type = data[i].Property_type;
 
+      if (data.Property_type == "All Residential"){
+        housingType = "ALL_RESIDENTIAL";
+      }
+      else if (data.Property_type == "Condo/Co-op"){
+        housingType = "CONDO_COOP";
+      }
+      else if (data.Property_type == "Multi-Family (2-4 Unit"){
+        housingType = "MULTI_FAMILY";
+      }
+      else if (data.Property_type == "Single Family Residential"){
+        housingType = "SINGLE_FAMILY";
+      }
+      else {
+        housingType = "TOWNHOUSE";
+      }
+
       let newMarker = L.marker(location, {
-        icon: icons["SINGLE_FAMILY"]
+        icon: icons[housingType]  
       }).bindPopup(`<h4>${countyName}</h4> <hr> <h4>Property Type: ${type} <hr> <h4>Median Sales Price: ${price}</h4>`).addTo(CaliMap);
 
-      // newMarker.addTo(layers);
+      // Add the new marker to the appropriate layer.
+      newMarker.addTo(layers[housingType]);
     }
     catch(err) {
       console.log(err)
     }
   }
 })
+
+
 
 // 1. Make the dang icons work!
 // 2. Update JSON and add more info (other sales prices, other info)
