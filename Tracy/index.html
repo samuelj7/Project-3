@@ -17,7 +17,7 @@
 
   <link href="style.css" rel="stylesheet">
 
-  <title>CA Real Estate Data Landing Page</title>
+  <title>Homepage - CA Real Estate Data</title>
 </head>
 
 <body>
@@ -40,13 +40,11 @@
                 Plots
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="Max Temperature.html">D3 Mapping</a></li>
-                <li><a class="dropdown-item" href="Humidity.html">Bar Graph</a></li>
-                <li><a class="dropdown-item" href="Cloudiness.html">Pie Chart</a></li>
-                <li><a class="dropdown-item" href="Wind Speed.html">Line Graph</a></li>
+                <li><a class="dropdown-item" href="Max Temperature.html">Average Property Prices</a></li>
+                <li><a class="dropdown-item" href="Humidity.html">Seasonal Inventory</a></li>
+                <li><a class="dropdown-item" href="Cloudiness.html">Inventory vs. Property Type</a></li>
+                <li><a class="dropdown-item" href="Wind Speed.html">Asking Price vs. Sold Price</a></li>
               </ul>
-            </li>
-            <a class="nav-link" href="Comparisons.html">Comparison</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="Data.html">Data</a>
@@ -55,20 +53,28 @@
   </nav>
   <!-- End of navbar -->
 
-  <!-- Start of container -->
-  <div class="container">
-    <div class="row ">
-      <div class="col-8">
-        <article class="description-content">
-          <h1 class="description-header">Stacked bar Graph</h1>
-          <hr class="description-hr" />
-          <p><img src="Resources/assets/images/Fig1.png" style="float:left" alt="Stacked Bar Graph" class="banner-image">     
-            The stacked bar chart shows the data trends across the months of the year.</p>
-                  </article>
-      </div>
+  
+   <!-- Project Scope Breakdown -->
+  <body>
+    <div class="container-fluid">
+      <div class="jumbotron text-center">
+        <h1><b>CA Real Estate Market Trends (2012 - Current)</b></h1>
+    </div>
+      
+
+     
+      
 
 
       <!-- Start of Visualizations Right sidebar -->
+      <div class="row"> <div class="col-8"><h2><b>Project Approach</b></h2>
+        <ol>
+          <li>Obtain Redfin data from their website</li>
+          <li>Clean the data</li>
+          <li>Upload into Mongo</li>
+          <li>Host data via Flask</li>
+        </ol>
+       </div>
       <div class="col-4">
         <div class="container img-grid">
           <h1 class="description-header">Visualizations</h1>
@@ -103,6 +109,7 @@
         <!-- End of the Visualizations sidebar -->
       </div>
     </div>
+  </div>
 
 
 
