@@ -1,101 +1,152 @@
 //Read in data
 const propertyData = "property_data.js";
-
+var d
 //Promise
-const dataPromise = d3.json(propertyData);
-console.log("Data Promise: ", dataPromise);
+
 d3.json(propertyData).then(function(data) {
   console.log(data);
+  d=data
+  init();
+});
 
-//Data for 2012
+//Datasets filtered for 2012-2022
 function housingType2012(data) {
-return data.year == 2012;
-};
-let housingType12 = data.filter(housingType2012)
-
-//Initiate first pie chart (2012)
-function init() {housingTypePie12 = [{
-     values: housingType12.map(row => row.inventory),
-     labels: housingType12.map(row => row.property_type),
-     type: 'pie'
- }];
- Plotly.newPlot("plot", housingTypePie12)
- };
-
-//Data for 2013
+  return data.year == 2012;
+  };
+  
 function housingType2013(data) {
   return data.year == 2013;
- };
-let housingType13 = data.filter(housingType2013);
-console.log(housingType13);
+  };
 
-//Data for 2014
 function housingType2014(data) {
   return data.year == 2014;
- };
-let housingType14 = data.filter(housingType2014);
-
-//Data for 2015
+  };
+  
 function housingType2015(data) {
   return data.year == 2015;
- };
-let housingType15 = data.filter(housingType2015);
-console.log(housingType15);
+  };
 
-//CODE THAT DOESN'T WORK RIGHT YET
+function housingType2016(data) {
+  return data.year == 2016;
+  };
 
-//d3.selectAll("selDataset").on("change", updatePlotly);
+function housingType2017(data) {
+  return data.year == 2017;
+  };
 
-// // This function is called when a dropdown menu item is selected
-//function updatePlotly() {
-// // Use D3 to select the dropdown menu
-//var dropdownMenu = d3.select("selDataset");
-// // Assign the value of the dropdown menu option to a variable
-//var dataset = dropdownMenu.property("value");
+function housingType2018(data) {
+  return data.year == 2018;
+  };
 
-// // Initialize x and y arrays
-//var values = [];
-//var labels = [];
+function housingType2019(data) {
+  return data.year == 2019;
+  };
 
+function housingType2020(data) {
+  return data.year == 2020;
+  };
 
-//if (dataset === 'housingType12') {
-//values: housingType12.map(row => row.inventory);
-//labels: housingType12.map(row => row.property_type);
-//}
+function housingType2021(data) {
+  return data.year == 2021;
+  };
 
-//else if (dataset === 'housingType13') {
-//values: housingType13.map(row => row.inventory);
-//labels: housingType13.map(row => row.property_type);
-//}
+function housingType2022(data) {
+  return data.year == 2022;
+  };
 
-//Plotly.restyle("plot", "values", [values]);
-//Plotly.restyle("plot", "labels", [labels]);
+//Initiate Select All
+function updatePlotly() {
+    var dropdownMenu = d3.select("#selDataset");
+    var dataset = dropdownMenu.property("value");
+  console.log(dataset)
+// Initialize values and labels arrays
+var values = [];
+var labels = [];
 
-init();
-})
+//Datasets for Housing Type 2012-2022
+if (dataset === 'housingType12') {
+  var housingType12 = d.filter(housingType2012)
+values= housingType12.map(row => row.inventory);
+labels= housingType12.map(row => row.property_type);
+}
 
+else if (dataset === 'housingType13') {
+  var housingType13 = d.filter(housingType2013)
+values= housingType13.map(row => row.inventory);
+labels= housingType13.map(row => row.property_type);
+}
 
+else if (dataset === 'housingType14') {
+  console.log(d.filter(housingType2014))
+  var housingType14 = d.filter(housingType2014)
+values= housingType14.map(row => row.inventory);
+labels= housingType14.map(row => row.property_type);
+}
 
+else if (dataset === 'housingType15') {
+  var housingType15 = d.filter(housingType2015)
+values= housingType15.map(row => row.inventory);
+labels= housingType15.map(row => row.property_type);
+}
 
+else if (dataset === 'housingType16') {
+  var housingType16 = d.filter(housingType2016)
+values= housingType16.map(row => row.inventory);
+labels= housingType16.map(row => row.property_type);
+}
 
-//CODE I MIGHT NEED LATER
-// let trace2013 = {
-//     values: housingType13.map(row => row.inventory),
-//     labels: housingType13.map(row => row.property_type),
-//     type: 'pie'
-// };
+else if (dataset === 'housingType17') {
+  var housingType17 = d.filter(housingType2017)
+values= housingType17.map(row => row.inventory);
+labels= housingType17.map(row => row.property_type);
+}
 
-// let traceData12 = [trace2012];
-// let traceData13 = [trace2013];
+else if (dataset === 'housingType18') {
+  var housingType18 = d.filter(housingType2018)
+values= housingType18.map(row => row.inventory);
+labels= housingType18.map(row => row.property_type);
+}
 
-// let layout1 = {
-//   title: "Inventory by Housing Type in CA 2012"
-// };
-// let layout2 = {
-//   title: "Inventory by Housing Type in CA 2013"
-// };
+else if (dataset === 'housingType19') {
+  var housingType19 = d.filter(housingType2019)
+values= housingType19.map(row => row.inventory);
+labels= housingType19.map(row => row.property_type);
+}
 
-// // Render the plot to the div tag with id "plot"
-// Plotly.newPlot("plot1", traceData12, layout1);
+else if (dataset === 'housingType20') {
+  var housingType20 = d.filter(housingType2020)
+values= housingType20.map(row => row.inventory);
+labels= housingType20.map(row => row.property_type);
+}
 
-// Plotly.newPlot("plot2", traceData13, layout2);
+else if (dataset === 'housingType21') {
+  var housingType21 = d.filter(housingType2021)
+values= housingType21.map(row => row.inventory);
+labels= housingType21.map(row => row.property_type);
+}
+
+else if (dataset === 'housingType22') {
+  var housingType22 = d.filter(housingType2022)
+values= housingType22.map(row => row.inventory);
+labels= housingType22.map(row => row.property_type);
+}
+console.log(values)
+console.log(labels)
+//Restyle on Plotly
+  Plotly.restyle("plot", "values", [values])
+  Plotly.restyle("plot", "labels", [labels]);
+}
+
+d3.select("#selDataset").on("change", updatePlotly);
+console.log("some text")
+
+//Initiate first pie chart (2012)
+function init(){
+var housingType12 = d.filter(housingType2012)
+housingTypePie12 = [{
+  values: housingType12.map(row => row.inventory),
+  labels: housingType12.map(row => row.property_type),
+  type: 'pie'
+}];
+Plotly.newPlot("plot", housingTypePie12)
+};
