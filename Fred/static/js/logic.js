@@ -1,20 +1,7 @@
-// Create a map object that centers on California.
-var CaliMap = L.map("map", {
-  center: [36.7783, -119.4179],
-  zoom: 6,
-  // layers: [
-  //   layers.ALL_RESIDENTIAL,
-  //   layers.TOWNHOUSE,
-  //   layers.CONDO_COOP,
-  //   layers.MULTI_FAMILY,
-  //   layers.SINGLE_FAMILY
-  // ] //something needs to be fixed with layers here.
-});
-
 // Add a tile layer.
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+var tile_Layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(CaliMap);//OK
+});
 
 // Initialize all the LayerGroups that we'll use.
 var layers = {
@@ -25,7 +12,22 @@ var layers = {
   SINGLE_FAMILY: new L.LayerGroup()
 };//OK
 
-// Create an overlays object to add to the layer control.
+// Create a map object that centers on California.
+var CaliMap = L.map("map", {
+  center: [36.7783, -119.4179],
+  zoom: 6,
+  layers: [
+    layers.ALL_RESIDENTIAL,
+    layers.TOWNHOUSE,
+    layers.CONDO_COOP,
+    layers.MULTI_FAMILY,
+    layers.SINGLE_FAMILY
+  ]//OK
+});
+
+tile_Layer.addTo(CaliMap);
+
+// Create an overlays object to add to the layer control (top-right of map).
 var overlays = {
   "All Residential": layers.ALL_RESIDENTIAL,
   "Townhouse": layers.TOWNHOUSE,
@@ -67,18 +69,15 @@ var icons = {
     icon: "ion-ios-home",
     iconColor: "white",
     markerColor: "green",
-    shape: "circle"
+    shape: "circle",
   })
 };
 
-// // Initialize housingType, which will be used as a key to access the appropriate layers and icons for the layer group.
-// var housingType;
-
-// // Loop through the data and 
-// for (var i = 0; i < hou)
-
 // Define path for source data
-var CaliHousing = "ca_county_data2.json"
+var CaliHousing = "Resources/ca_county_data2.json"
+
+// Initialize housingType, which will be used as a key to access the appropriate layers and icons for the layer group.
+var housingType;
 
 // Call in and loop through the data to create markers for each counties.
 d3.json(CaliHousing).then(function (data) {
@@ -88,12 +87,30 @@ d3.json(CaliHousing).then(function (data) {
       let price = data[i].Median_sales_price;
       let countyName = data[i].County;
       let type = data[i].Property_type;
+      let year = data[i].Year
+
+      if (type == "All Residential"){
+        housingType = "ALL_RESIDENTIAL";
+      }
+      else if (type == "Condo/Co-op"){
+        housingType = "CONDO_COOP";
+      }
+      else if (type == "Multi-Family (2-4 Unit)"){
+        housingType = "MULTI_FAMILY";
+      }
+      else if (type == "Single Family Residential"){
+        housingType = "SINGLE_FAMILY";
+      }
+      else {
+        housingType = "TOWNHOUSE";
+      }//OK
 
       let newMarker = L.marker(location, {
-        icon: icons["SINGLE_FAMILY"]
-      }).bindPopup(`<h4>${countyName}</h4> <hr> <h4>Property Type: ${type} <hr> <h4>Median Sales Price: ${price}</h4>`).addTo(CaliMap);
+        icon: icons[housingType]  
+      }).bindPopup(`<h4>County Name: ${countyName}</h4> <hr> <h4>Property Type: ${type} <hr> <h4>Median Sales Price: ${price}</h4> <hr> <h4>Year: ${year}`).addTo(CaliMap);
 
-      // newMarker.addTo(layers);
+      // Add the new marker to the appropriate layer.
+      newMarker.addTo(layers[housingType]);
     }
     catch(err) {
       console.log(err)
@@ -101,11 +118,15 @@ d3.json(CaliHousing).then(function (data) {
   }
 })
 
-// 1. Make the dang icons work!
+// ----------------------------------------------------------------------------
+
+// 1. Make "Single Family" marker by default when landing on a page.
 // 2. Update JSON and add more info (other sales prices, other info)
 //// such as property inventory numbers (or listed), 
 // 3. Create legend that includes additional info from 2. when you click icons
 // 4. create dropdown by years
+// (4/3) make single-family icons default
+// (4/4) new problem : maps only 2022 (last entries in dataset), and cannot make one year or one property-type default.
 
 
 // // Icon options
