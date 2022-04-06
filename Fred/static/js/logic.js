@@ -10,19 +10,19 @@ var layers = {
   CONDO_COOP: new L.LayerGroup(),
   MULTI_FAMILY: new L.LayerGroup(),
   SINGLE_FAMILY: new L.LayerGroup()
-};//OK
+};
 
 // Create a map object that centers on California.
 var CaliMap = L.map("map", {
-  center: [36.7783, -119.4179],
-  zoom: 6,
+  center: [36.4783, -119.4179],
+  zoom: 7,
   layers: [
     layers.ALL_RESIDENTIAL,
     layers.TOWNHOUSE,
     layers.CONDO_COOP,
     layers.MULTI_FAMILY,
     layers.SINGLE_FAMILY
-  ]//OK
+  ]
 });
 
 tile_Layer.addTo(CaliMap);
@@ -34,27 +34,27 @@ var overlays = {
   "Condo/Co-Op": layers.CONDO_COOP,
   "Multi-Family": layers.MULTI_FAMILY,
   "Single-Family": layers.SINGLE_FAMILY
-};//OK
+};
 
 // Create a control for our layers, and add our overlays to it.
-L.control.layers(null, overlays).addTo(CaliMap);//OK
+L.control.layers(null, overlays).addTo(CaliMap);
 
 // Create Icons Object for each property type
 var icons = {
   ALL_RESIDENTIAL: L.ExtraMarkers.icon({
-    icon: "ion-ios-home",
+    icon: "ion-android-home",
     iconColor: "white",
-    markerColor: "yellow",
+    markerColor: "pink",
     shape: "penta"
   }),
   TOWNHOUSE: L.ExtraMarkers.icon({
-    icon: "ion-ios-home",
+    icon: "ion-ios-home-outline",
     iconColor: "white",
     markerColor: "red",
     shape: "circle"
   }),
   CONDO_COOP: L.ExtraMarkers.icon({
-    icon: "ion-ios-home",
+    icon: "ion-ios-home-outline",
     iconColor: "white",
     markerColor: "blue-dark",
     shape: "circle"
@@ -81,61 +81,44 @@ var housingType;
 
 // Call in and loop through the data to create markers for each counties.
 d3.json(CaliHousing).then(function (data) {
-  for (var i = 0; i < data.length; i++) {
-    try {
-      let location = [data[i].lat, data[i].lng];
-      let price = data[i].Median_sales_price;
-      let countyName = data[i].County;
-      let type = data[i].Property_type;
-      let year = data[i].Year
+  var yrsel = 2021;
+  var year_ = data.filter(pax=>pax.Year==yrsel);
 
-      if (type == "All Residential"){
-        housingType = "ALL_RESIDENTIAL";
-      }
-      else if (type == "Condo/Co-op"){
-        housingType = "CONDO_COOP";
-      }
-      else if (type == "Multi-Family (2-4 Unit)"){
-        housingType = "MULTI_FAMILY";
-      }
-      else if (type == "Single Family Residential"){
-        housingType = "SINGLE_FAMILY";
-      }
-      else {
-        housingType = "TOWNHOUSE";
-      }//OK
+  for (var i = 0; i < year_.length; i++) {
+    let location = [year_[i].lat, year_[i].lng];
+    let price = year_[i].Median_sales_price;
+    let price_rev = price.toLocaleString("en-US");
+    let countyName = year_[i].County;
+    let type = year_[i].Property_type;
+    let year = year_[i].Year
 
-      let newMarker = L.marker(location, {
-        icon: icons[housingType]  
-      }).bindPopup(`<h4>County Name: ${countyName}</h4> <hr> <h4>Property Type: ${type} <hr> <h4>Median Sales Price: ${price}</h4> <hr> <h4>Year: ${year}`).addTo(CaliMap);
 
-      // Add the new marker to the appropriate layer.
-      newMarker.addTo(layers[housingType]);
+    if (type == "All Residential") {
+      housingType = "ALL_RESIDENTIAL";
     }
-    catch(err) {
-      console.log(err)
+    else if (type == "Condo/Co-op") {
+      housingType = "CONDO_COOP";
     }
-  }
-})
+    else if (type == "Multi-Family (2-4 Unit)") {
+      housingType = "MULTI_FAMILY";
+    }
+    else if (type == "Single Family Residential") {
+      housingType = "SINGLE_FAMILY";
+    }
+    else {
+      housingType = "TOWNHOUSE";
+    }
+
+    let newMarker = L.marker(location, {
+      icon: icons[housingType]
+    }).bindPopup(`<h4>County Name: ${countyName}</h4> <hr> <h4>Property Type: ${type} <hr> <h4>Median Sales Price: ${price_rev}</h4> <hr> <h4>Year: ${year}`).addTo(CaliMap);
+
+    // Add the new marker to the appropriate layer.
+    newMarker.addTo(layers[housingType]);
+  };
+});
 
 // ----------------------------------------------------------------------------
-
-// 1. Make "Single Family" marker by default when landing on a page.
-// 2. Update JSON and add more info (other sales prices, other info)
-//// such as property inventory numbers (or listed), 
-// 3. Create legend that includes additional info from 2. when you click icons
-// 4. create dropdown by years
-// (4/3) make single-family icons default
-// (4/4) new problem : maps only 2022 (last entries in dataset), and cannot make one year or one property-type default.
-
-
-// // Icon options
-// var iconOptions = {
-//   iconUrl: 'logo.png',
-//   iconSize: [50, 50]
-// }
-
-// // Creating a custom icon
-// var customIcon = L.icon(iconOptions);
-
-
+// For Project-4 Improvements:
+// Median Sales Price dropdown by years (2012~2022).
+// more info included in HTML or Legend
