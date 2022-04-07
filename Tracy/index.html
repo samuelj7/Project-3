@@ -15,6 +15,14 @@
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
     crossorigin="anonymous"></script>
 
+  <!-- Import AniJS -->
+  <script src="anijs-min.js"></script>
+  
+  <!-- AniCollection.css library -->
+  <head>
+    <link rel="stylesheet" href="http://anijs.github.io/lib/anicollection/anicollection.css">
+</head>
+
   <link href="style.css" rel="stylesheet">
 
   <title>Homepage - CA Real Estate Data</title>
@@ -40,9 +48,9 @@
                 Plots
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="Max Temperature.html">Average Property Prices</a></li>
-                <li><a class="dropdown-item" href="Humidity.html">Seasonal Inventory</a></li>
-                <li><a class="dropdown-item" href="Cloudiness.html">Inventory vs. Property Type</a></li>
+                <li><a class="dropdown-item" href="../Fred/index.html">Average Property Prices</a></li>
+                <li><a class="dropdown-item" href="bar_graph.html">Seasonal Inventory</a></li>
+                <li><a class="dropdown-item" href="../Kaycee/index.html">Inventory vs. Property Type</a></li>
                 <li><a class="dropdown-item" href="Wind Speed.html">Asking Price vs. Sold Price</a></li>
               </ul>
             </li>
@@ -67,7 +75,7 @@
 
 
       <!-- Start of Visualizations Right sidebar -->
-      <div class="row"> <div class="col-8"><h2><b>Project Approach</b></h2>
+      <div class="row"> <div class="col-12"><h2><b>Project Approach</b></h2>
         <ol>
           <li>Obtain Redfin data from their website</li>
           <li>Clean the data</li>
@@ -75,27 +83,27 @@
           <li>Host data via Flask</li>
         </ol>
        </div>
-      <div class="col-4">
+      <div class="col-12">
         <div class="container img-grid">
-          <h1 class="description-header">Visualizations</h1>
-          <hr class="description-hr" />
+          <h2 class="description-header"><b>Visualizations</b></h2>
+          
           <div class="row row-cols-2">
             <div class="col">
               <div>
-                <a href="Max Temperature.html"><img src="Resources/assets/images/Fig1.png"
-                    alt="Latitude vs. Max Temperature" class="imageNav-photo"></a>
+                <a href="../Fred/index.html"><img src="Resources/assets/images/Fig1.png"
+                    alt="D3 Mapping" class="imageNav-photo"></a>
               </div>
             </div>
             <div class="col">
               <div>
-                <a href="Humidity.html"><img src="Resources/assets/images/Fig2.png"
-                    alt="Latitude vs. Humidity" class="imageNav-photo"></a>
+                <a href="bar_graph.html"><img src="Resources/assets/images/Fig2.png"
+                    alt="Bar_Graph" class="imageNav-photo"></a>
               </div>
             </div>
             <div class="col">
               <div>
-                <a href="Cloudiness.html"><img src="Resources/assets/images/Fig3.png"
-                    alt="Latitude vs. Cloudiness" class="imageNav-photo"></a>
+                <a href="../Kaycee/index.html"><img src="Pie_Chart.png"
+                    alt="Pie_Chart" class="imageNav-photo"></a>
               </div>
             </div>
             <div class="col">
