@@ -17,21 +17,21 @@
 
   <!-- Import AniJS -->
   <script src="anijs-min.js"></script>
-  
+
   <!-- AniCollection.css library -->
+
   <head>
     <link rel="stylesheet" href="http://anijs.github.io/lib/anicollection/anicollection.css">
-</head>
+  </head>
 
-  <link href="style.css" rel="stylesheet">
 
   <title>Homepage - CA Real Estate Data</title>
+  <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
-
   <!-- Start of navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">Home</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -43,73 +43,82 @@
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="index.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="index.html" id="navbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 Plots
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="../Fred/index.html">Average Property Prices</a></li>
                 <li><a class="dropdown-item" href="bar_graph.html">Seasonal Inventory</a></li>
                 <li><a class="dropdown-item" href="../Kaycee/index.html">Inventory vs. Property Type</a></li>
-                <li><a class="dropdown-item" href="Wind Speed.html">Asking Price vs. Sold Price</a></li>
+                <li><a class="dropdown-item" href="../Samuel/index.html">Asking Price vs. Sold Price</a></li>
               </ul>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="Data.html">Data</a>
             </li>
         </div>
+      </div>
   </nav>
+
   <!-- End of navbar -->
 
-  
-   <!-- Project Scope Breakdown -->
+
+  <!-- Project Scope Breakdown -->
+
   <body>
     <div class="container-fluid">
       <div class="jumbotron text-center">
         <h1><b>CA Real Estate Market Trends (2012 - Current)</b></h1>
-    </div>
-      
-
-     
-      
-
+        <hr>
+      </div>
 
       <!-- Start of Visualizations Right sidebar -->
-      <div class="row"> <div class="col-12"><h2><b>Project Approach</b></h2>
-        <ol>
-          <li>Obtain Redfin data from their website</li>
-          <li>Clean the data</li>
-          <li>Upload into Mongo</li>
-          <li>Host data via Flask</li>
-        </ol>
-       </div>
+      <div class="row">
+        <div class="col-12" data-anijs="if: click, do: flipInY animated">
+          <h2><b>Project Approach</b></h2>
+            <hr>
+          <ol>
+            <li>Obtain Redfin data from their website</li>
+            <li>Clean the data</li>
+            <li>Upload into Mongo</li>
+            <li>Host data via Flask</li>
+          </ol>
+        </div>
+      </div>
       <div class="col-12">
         <div class="container img-grid">
           <h2 class="description-header"><b>Visualizations</b></h2>
-          
+
           <div class="row row-cols-2">
             <div class="col">
               <div>
-                <a href="../Fred/index.html"><img src="Resources/assets/images/Fig1.png"
+
+                <h6>CA Avg Median Sales Price by Property Types 2021</h6>
+                <a href="../Fred/index.html"><img width="350 px" height="256 px" src="../Fred/Resources/D3Map.png"
                     alt="D3 Mapping" class="imageNav-photo"></a>
+
               </div>
             </div>
             <div class="col">
               <div>
-                <a href="bar_graph.html"><img src="Resources/assets/images/Fig2.png"
-                    alt="Bar_Graph" class="imageNav-photo"></a>
+                <h6>Seasonal Inventory</h6>
+                <a href="bar_graph.html"><img width="350 px" height="256 px" src="Bar_Graph.png" alt="Bar_Graph"
+                    class="imageNav-photo"></a>
               </div>
             </div>
             <div class="col">
               <div>
-                <a href="../Kaycee/index.html"><img src="Pie_Chart.png"
-                    alt="Pie_Chart" class="imageNav-photo"></a>
+                <h6>CA Inventory by Housing Type</h6>
+                <a href="../Kaycee/index.html"><img width="350 px" height="256 px" src="Pie_Chart.png" alt="Pie_Chart"
+                    class="imageNav-photo"></a>
               </div>
             </div>
             <div class="col">
               <div>
-                <a href="Wind Speed.html"><img src="Resources/assets/images/Fig4.png"
-                    alt="Latitude vs. Wind Speed" class="imageNav-photo"></a>
+                <h6>Top 10 Counties Amt Sold Over Last Decade</h6>
+                <a href="../Samuel/index.html"><img width="350 px" height="256 px" src="../Samuel/Line_Graph.png"
+                    alt="Line_Graph" class="imageNav-photo"></a>
               </div>
             </div>
           </div>
@@ -117,20 +126,18 @@
         <!-- End of the Visualizations sidebar -->
       </div>
     </div>
-  </div>
+
 
 
 
 
     <!-- End of container -->
-  </div>
+    </div>
 
 
 
 
-
-</body>
+    <script src="anijs-min.js"></script>
+  </body>
 
 </html>
-
-
