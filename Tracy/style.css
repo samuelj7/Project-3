@@ -14,23 +14,20 @@ h1{
     margin: 50px;
 }
 
-/* .dropdown-item{
+.dropdown-item{
  position: relative;
  background-color: #F9F9F9;
- min-width: 160px;
+ min-width: 100px;
  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
  z-index: 1;
- float: none;
+ float: auto;
  color: black;
  padding: 12px 16px;
  text-decoration: none;
  display: block;
  text-align: left;
-} */
-
-.dropdown-item{
-    
-   }
+ margin-right:100px;
+}
 
 h2{
     text-align:center;
@@ -46,15 +43,6 @@ h2{
 html {
     height: 100%;
   }
-
-body {
+  body {
     min-height: 100%;
   }
-
-/* #selDataSet{
-    text-align:center;
-} */
-
-p{
-    margin-left: 52px;
-}
