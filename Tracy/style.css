@@ -46,3 +46,7 @@ html {
   body {
     min-height: 100%;
   }
+
+  p{
+    margin-left: 52px;
+}
